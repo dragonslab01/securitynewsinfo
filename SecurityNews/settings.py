@@ -24,6 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 env = environ.Env()
 env.read_env(os.path.join(BASE_DIR,".env"))
+print(os.path.join(BASE_DIR,".env"))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
@@ -31,7 +32,6 @@ env.read_env(os.path.join(BASE_DIR,".env"))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env("SECRET_KEY")
 
-print(env("SECREt_KEY"))
 DEBUG = env("DEBUG")
 
 ALLOWED_HOSTS = ['127.0.0.1','securitynewsinfo.onrender.com']
