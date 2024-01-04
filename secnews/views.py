@@ -195,6 +195,7 @@ def main(request):
     incident_list.clear()
     defense_list.clear()
     other_list.clear()
+    overseas_list.clear()
     
     #IPA（重要セキュリテイー情報）のスクレイピング
     url = "https://www.ipa.go.jp/"
