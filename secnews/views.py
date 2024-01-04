@@ -75,25 +75,36 @@ def list_classification(sites,title,url):
     flag = False
     
     #辞書
+    word_advance = ["脆弱性対策","注意喚起"]
     word_incident = ["流失","流出","脆弱性","サイバー攻撃","詐欺","攻撃","被害",
                      "不正","処分","ミス","被害","所在不明","悪用","感染","不備",
                     "だます","なりすまし","別人","紛失","閉鎖","利用不可","置き忘れ",
                      "注意","警告","まずい","中止",]
-    word_defense = ["診断機能","ゼロトラスト","対策","訓練","体験","教育","演習","注意喚起","打ち手","封じ込め","評価"]
+    word_defense = ["診断","診断機能","ゼロトラスト","対策","訓練","体験","教育","演習","打ち手","封じ込め","評価"]
 
-    if "脆弱性対策" in title:
-        incident_list.append([sites,title,url])
-        flag = True
-    
     #分類処理
-    for i in range(len(word_defense)):
     
-        if word_defense[i] in title:
-            defense_list.append([sites,title,url])
-            flag = True
-            break
+   for i in range(len(word_advance)):
+   
+   	if word_incident[i] in title:
+   		incident_list.append([sites,title,url])
+                print(title)
+                flag = True
+                break
         else:
             pass
+    
+    #分類処理
+    
+    if flag == False:
+    	for i in range(len(word_defense)):
+    
+        	if word_defense[i] in title:
+            		defense_list.append([sites,title,url])
+            		flag = True
+            		break
+        	else:
+            		pass
             
     if flag == False:
     
