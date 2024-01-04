@@ -35,7 +35,7 @@ SECRET_KEY = env("SECRET_KEY")
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['securitynewsinfo.onrender.com']
+ALLOWED_HOSTS = ['django-render-qr78.onrender.com','securitynewsinfo.onrender.com']
 
 
 # Application definition
