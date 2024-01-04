@@ -7,11 +7,11 @@ databases:
 
 services:
   - type: web
-    name: django_render
+    name: SecurityNewsinfomation
     env: python
     region: singapore
     buildCommand: './build.sh'
-    startCommand: 'gunicorn SecurityNews.wsgi:application'
+    startCommand: 'gunicorn SecurityNews.wsgi --log'
     plan: free
     branch: main
     healthCheckPath: /
