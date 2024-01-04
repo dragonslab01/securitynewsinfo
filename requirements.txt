@@ -6,6 +6,6 @@ django-environ
 gunicorn
 psycopg2-binary
 whitenoise
-mathfilters
+django-mathfilters
 requests
 BeautifulSoup 
