@@ -9,3 +9,4 @@ whitenoise
 django-mathfilters
 requests
 BeautifulSoup4
+opnepyxl
