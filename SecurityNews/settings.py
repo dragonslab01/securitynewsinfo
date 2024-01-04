@@ -23,8 +23,8 @@ from dj_database_url import parse as dburl
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 env = environ.Env()
-env.read_env(os.path.join(BASE_DIR,".env"))
-print(os.path.join(BASE_DIR,".env"))
+#env.read_env(os.path.join(BASE_DIR,".env"))
+env.read_env(".env")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
