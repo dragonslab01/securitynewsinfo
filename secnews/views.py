@@ -83,10 +83,10 @@ def list_classification(sites,title,url):
     word_defense = ["診断","診断機能","ゼロトラスト","対策","訓練","体験","教育","演習","打ち手","封じ込め","評価"]
 
     #分類処理
-    
+  
     for i in range(len(word_advance)):
     
-        if word_incident[i] in title:
+        if word_advance[i] in title:
             incident_list.append([sites,title,url])
             print(title)
             flag = True
