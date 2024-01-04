@@ -34,8 +34,8 @@ def list_appends(sites,topic,topurl):
                     list.append([sites,element.text,topurl+element.get("href")])
                 
         
-        for i in range(len(list.append)-1):
-            if list.append[i] == element.text:
+        for i in range(len(list)-1):
+            if list[i] == element.text:
                 del list[-1]
 
 #スクレイピングしたものを欠損値処理をした上で格納。
@@ -52,7 +52,7 @@ def overseas_list_appends(sites,topic,topurl):
                 check_url = element.get("href")
                 title = element.text
                 
-                if titie.startswith('\n\n'):
+                if title.startswith('\n\n'):
                     title= title.strip('\n\n')
                 
                 if title.endswith('new'):
@@ -265,7 +265,7 @@ def main(request):
     context={'incidentlist':incident_list,
              'defenselist':defense_list,
              'otherlist':other_list,
-             'overseaslist':overseas_list
+             'overseaslist':overseas_list,
             }
     
     return render(request,"secnews/main.html",context)
