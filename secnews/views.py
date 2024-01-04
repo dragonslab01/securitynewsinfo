@@ -153,7 +153,6 @@ def list_classification(sites,title,url):
     
         if word_advance[i] in title:
             incident_list.append([sites,title,url])
-            print(title)
             flag = True
             break
         else:
@@ -178,7 +177,6 @@ def list_classification(sites,title,url):
         
             if word_incident[i] in title:
                 incident_list.append([sites,title,url])
-                print(title)
                 flag = True
                 break
         else:
@@ -259,6 +257,9 @@ def main(request):
     for j in range(len(list)):
         list_classification(list[j][0],list[j][1],list[j][2])
         
+    print('ck')
+        
+    
             
     context={'incidentlist':incident_list,
              'defenselist':defense_list,

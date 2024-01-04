@@ -19,7 +19,7 @@ from dj_database_url import parse as dburl
 
 
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+#Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 #仮想環境の設定
@@ -30,13 +30,13 @@ env.read_env(os.path.join(BASE_DIR,".env"))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
+#SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env("SECRET_KEY")
 
 DEBUG = False
 
 ALLOWED_HOSTS = ['django-render-qr78.onrender.com','securitynewsinfo.onrender.com']
-
+#ALLOWED_HOSTS = [ ]
 
 # Application definition
 
