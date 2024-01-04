@@ -84,27 +84,28 @@ def list_classification(sites,title,url):
 
     #分類処理
     
-   for i in range(len(word_advance)):
-   
-   	if word_incident[i] in title:
-   		incident_list.append([sites,title,url])
-                print(title)
-                flag = True
-                break
+    for i in range(len(word_advance)):
+    
+        if word_incident[i] in title:
+            incident_list.append([sites,title,url])
+            print(title)
+            flag = True
+            break
         else:
             pass
     
     #分類処理
     
     if flag == False:
-    	for i in range(len(word_defense)):
+        
+        for i in range(len(word_defense)):
     
-        	if word_defense[i] in title:
-            		defense_list.append([sites,title,url])
-            		flag = True
-            		break
-        	else:
-            		pass
+            if word_defense[i] in title:
+                defense_list.append([sites,title,url])
+                flag = True
+                break
+            else:
+                pass
             
     if flag == False:
     
