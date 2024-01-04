@@ -212,7 +212,7 @@ def xlsxdownload_incident(request):
     header = ["サイト名","タイトル","URL"]
     wb = px.Workbook()
     ws = wb.active
-    for i in range(len(header) - 1):
+    for i in range(len(header)):
         ws.cell(row = 1,column= i+1).value = header[i]
     for i in range(len(incident_list)-1):
             for j in range(len(header) - 1):
@@ -232,7 +232,7 @@ def xlsxdownload_defense(request):
     ws = wb.active
     for i in range(len(header)-1):
         ws.cell(row = 1,column= i+1).value = header[i]
-    for i in range(len(defense_list)-1):
+    for i in range(len(defense_list)):
             for j in range(len(header)-1):
                 ws.cell(row = 2 + i,column = j+1).value = defense_list[i][j]
     virtual = io.BytesIO()
@@ -249,7 +249,7 @@ def xlsxdownload_other(request):
     ws = wb.active
     for i in range(len(header) - 1):
         ws.cell(row = 1,column= i+1).value = header[i]
-    for i in range(len(other_list)-1):
+    for i in range(len(other_list)):
             for j in range(len(header) - 1):
                 ws.cell(row = 2 + i,column = j+1).value = other_list[i][j]
     virtual = io.BytesIO()
