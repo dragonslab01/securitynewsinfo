@@ -9,4 +9,4 @@ whitenoise
 django-mathfilters
 requests
 BeautifulSoup4
-opnepyxl == 3.1.2
+openpyxl
