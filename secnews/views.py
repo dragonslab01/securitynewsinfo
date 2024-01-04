@@ -14,6 +14,8 @@ incident_list = []#インシデントに関するニュース
 defense_list = []#セキュリティ対策に関するニュース
 other_list = []#コラムや調査などといったその他のニュース
 
+overseas_list =[]
+
 #スクレイピングしたものを欠損値処理をした上で格納
 def list_appends(sites,topic,topurl):
     
@@ -32,8 +34,38 @@ def list_appends(sites,topic,topurl):
                     list.append([sites,element.text,topurl+element.get("href")])
                 
         
-        for i in range(len(list)-1):
-            if list[i] == element.text:
+        for i in range(len(list.append)-1):
+            if list.append[i] == element.text:
+                del list[-1]
+
+#スクレイピングしたものを欠損値処理をした上で格納。
+#海外ニュースの場合はこちらを適用
+def overseas_list_appends(sites,topic,topurl):
+    
+    for element in topic.find_all("a"):      
+        
+        if element.text == "\n\n\n\n":
+            continue
+        else:
+            if len(element.text) != 0:
+                
+                check_url = element.get("href")
+                title = element.text
+                
+                if titie.startswith('\n\n'):
+                    title= title.strip('\n\n')
+                
+                if title.endswith('new'):
+                    title = title.rstrip('new')
+                
+                if check_url.startswith('h'):
+                    overseas_list.append([sites,title,element.get("href")])
+                else:
+                    overseas_list.append([sites,title,topurl+element.get("href")])
+                
+        
+        for i in range(len(overseas_list)-1):
+            if overseas_list[i] == element.text:
                 del list[-1]
 
 #スクレイピングしたものを欠損値処理をした上で格納。
@@ -69,6 +101,39 @@ def list_appends_separation(tag_topic,tag_url,sites,topic,topurl):
     process_list_title.clear()
     process_list_url.clear()
 
+#スクレイピングしたものを欠損値処理をした上で格納。
+#ただし、2つのタグを別々にスクレイピングする必要がある場合に使用する。
+#海外ニュースの場合に適用
+def overseas_list_appends_separation(tag_topic,tag_url,sites,topic,topurl):
+    
+    process_list_title = []
+    process_list_url = []   
+    
+    for element in topic.find_all(tag_topic):
+        
+        if element.text == "\n\n\n\n":
+            continue
+        else:
+            if len(element.text) != 0:
+                process_list_title.append(element.text)
+
+    for element in topic.find_all(tag_url):
+        
+        if element.text == "\n\n\n\n":
+            continue
+        else:
+            if len(element.text) != 0:
+                process_list_url.append(element.get("href"))
+    
+    for i in range(len(process_list_url)):
+        check_url = process_list_url[i]
+        if check_url.startswith('h'):
+            overseas_list.append([sites,process_list_title[i],process_list_url[i]])
+        else:
+            overseas_list.append([sites,process_list_title[i],topurl+process_list_url[i]])
+    
+    process_list_title.clear()
+    process_list_url.clear()
 
 #ルールベースでの分類
 def list_classification(sites,title,url):
@@ -176,10 +241,31 @@ def main(request):
     for j in range(len(list)):
         list_classification(list[j][0],list[j][1],list[j][2])
         
+    #海外ニュースサイト(morningstarsecurity)
+    url = "https://morningstarsecurity.com/news"
+    sites = "Morningstarsecurity"
+    response = req.get(url)
+    soup = bs4(response.content,"html.parser")
+    topic = soup.find(class_="cmra-content-links")
+    url = url[:-1]
+    overseas_list_appends(sites,topic,url)
+
+    #海外ニュースサイト(infosecurity-magazine)
+    url = "https://www.infosecurity-magazine.com/news/"
+    sites = "infosecurity-magazine"
+    response = req.get(url)
+    soup = bs4(response.content,"html.parser")
+    topic = soup.find(class_="webpages-list")
+    url = url[:-1]
+    overseas_list_appends(sites,topic,url)
+    
+    #海外ニュースサイト(morningstarsecurity)
+        
             
     context={'incidentlist':incident_list,
              'defenselist':defense_list,
-             'otherlist':other_list
+             'otherlist':other_list,
+             'overseaslist':overseas_list
             }
     
     return render(request,"secnews/main.html",context)
@@ -270,3 +356,34 @@ def xlsxdownload_other(request):
     binary = io.BytesIO(virtual.getvalue())
                          
     return FileResponse(binary,filename="国内セキュリテイーニュース（その他）.xlsx")
+
+#海外のセキュリティニュースの出力
+#csv形式
+def csvdownload_overseas(request):
+    
+    response = HttpResponse(content_type = 'text/csv; charset=Shift-JIS')
+    filename =urllib.parse.quote((u'海外セキュリティニュース.csv').encode("utf8"))
+    response['Content-Disposition'] = 'attachment; filename*=UTF-8\'\'{}'.format(filename)
+    writer = csv.writer(response)
+    for k in range(len(overseas_list) - 1):
+        writer.writerow([overseas_list[k][0],overseas_list[k][1],overseas_list[k][2]])
+        
+    return response
+                         
+#xlsx形式で出力                        
+def xlsxdownload_overseas(request):
+    
+    header = ["サイト名","タイトル","URL"]
+    wb = px.Workbook()
+    ws = wb.active
+    for i in range(len(header)):
+        ws.cell(row = 1,column= i+1).value = header[i]
+    for i in range(len(overseas_list)-1):
+            for j in range(len(header)):
+                ws.cell(row = 2 + i,column = j+1).value = overseas_list[i][j]
+    virtual = io.BytesIO()
+    wb.save(virtual)
+    
+    binary = io.BytesIO(virtual.getvalue())
+                         
+    return FileResponse(binary,filename="海外セキュリテイーニュース.xlsx")

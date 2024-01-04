@@ -106,6 +106,38 @@
 		<button class="button_parts" onclick="location.href='xlsxdownload_other'">XLSX形式ファイルで出力</button>
 	</div>
 	
+	<h2 class="h2border">海外ニュース</h2>	
+	
+	<h3>その他</h3>
+
+	
+		<table>
+		<thead>
+			<tr>
+				<th class="site">サイト名</th>
+				<th class="title">記事タイトル</th>
+				<th class="url">URL</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for list in overseaslist %}
+				{% with index=forloop.counter0 %}
+					{% if index|mod:1 == 0 %}<tr>{% endif %}
+						<td>{{list.0}}</td>
+						<td>{{list.1}}</td>
+						<td><a href="{{list.2}}" >{{list.2}}</a></td>
+					{% if index|mod:1 == 1 %}</tr>{% endif %}
+				{% endwith %}
+			{% endfor %}						
+
+		</tbody>
+		</table>
+
+	<div class="button">
+		<button class="button_parts" onclick="location.href='csvdownload_overseas'">CSV形式ファイルで出力</button>
+		<button class="button_parts" onclick="location.href='xlsxdownload_overseas'">XLSX形式ファイルで出力</button>
+	</div>
+	
 <footer>
 <p>©DragonsLAB-01(2024)</p>
 </footer>
