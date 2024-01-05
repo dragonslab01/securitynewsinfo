@@ -358,6 +358,7 @@ def xlsxdownload_other(request):
                          
     return FileResponse(binary,filename="国内セキュリテイーニュース（その他）.xlsx")
 
+'''
 #海外のセキュリティニュースの出力
 #csv形式
 def csvdownload_overseas(request):
