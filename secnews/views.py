@@ -234,7 +234,8 @@ def main(request):
     topic = soup.find(id="Newarticles")
     url = url[:-1]
     list_appends(sites,topic,url)
-        
+     
+    """   
     #海外ニュースサイト(morningstarsecurity)
     url = "https://morningstarsecurity.com/news"
     sites = "Morningstarsecurity"
@@ -252,6 +253,7 @@ def main(request):
     topic = soup.find(class_="webpages-list")
     url = url[:-1]
     overseas_list_appends(sites,topic,url)
+    """
 
     #スクレイピングしたデータの処理
     for j in range(len(list)):
@@ -259,8 +261,6 @@ def main(request):
         
     print('ck')
         
-    
-            
     context={'incidentlist':incident_list,
              'defenselist':defense_list,
              'otherlist':other_list,
