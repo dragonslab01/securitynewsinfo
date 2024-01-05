@@ -53,7 +53,7 @@ def overseas_list_appends(sites,topic,topurl):
                 title = element.text
                 
                 if title.startswith('\n\n'):
-                    #title= title.strip('\n\n')
+                    title= title.strip('\n\n')
                 
                 if title.endswith('new'):
                     title = title.rstrip('new')
