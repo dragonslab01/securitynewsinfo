@@ -237,7 +237,7 @@ def main(request):
      
     
     #海外ニュースサイト(morningstarsecurity)
-    url = "https://morningstarsecurity.com/news"
+    url = "https://morningstarsecurity.com/news/"
     sites = "Morningstarsecurity"
     response = req.get(url)
     soup = bs4(response.content,"html.parser")
@@ -254,6 +254,7 @@ def main(request):
     topic = soup.find(class_="webpages-list")
     url = url[:-1]
     overseas_list_appends(sites,topic,url)
+
     
 
     #スクレイピングしたデータの処理
