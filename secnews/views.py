@@ -244,6 +244,7 @@ def main(request):
     topic = soup.find(class_="cmra-content-links")
     url = url[:-1]
     overseas_list_appends(sites,topic,url)
+    """
 
     #海外ニュースサイト(infosecurity-magazine)
     url = "https://www.infosecurity-magazine.com/news/"
@@ -253,7 +254,7 @@ def main(request):
     topic = soup.find(class_="webpages-list")
     url = url[:-1]
     overseas_list_appends(sites,topic,url)
-    """
+    
 
     #スクレイピングしたデータの処理
     for j in range(len(list)):
