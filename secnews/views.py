@@ -234,16 +234,6 @@ def main(request):
     topic = soup.find(id="Newarticles")
     url = url[:-1]
     list_appends(sites,topic,url)
-     
-    
-    #海外ニュースサイト(morningstarsecurity)
-    url = "https://morningstarsecurity.com/news/"
-    sites = "Morningstarsecurity"
-    response = req.get(url)
-    soup = bs4(response.content,"html.parser")
-    topic = soup.find(class_="cmra-content-links")
-    url = url[:-1]
-    overseas_list_appends(sites,topic,url)
     
     
     #海外ニュースサイト(infosecurity-magazine)
@@ -254,6 +244,14 @@ def main(request):
     topic = soup.find(class_="webpages-list")
     url = url[:-1]
     overseas_list_appends(sites,topic,url)
+    
+    #海外ニュースサイト（）
+    url = "https://securityboulevard.com/cybersecurity-news/"
+    sites = "securityboulevard."
+    response = req.get(url)
+    soup = bs4(response.content,"html.parser")
+    for element in soup.find_all("a",attrs={'class':'_self cvplbd'}):
+        overseas_list.append([element.text,element.get("href")])
 
     
 
@@ -358,7 +356,6 @@ def xlsxdownload_other(request):
                          
     return FileResponse(binary,filename="国内セキュリテイーニュース（その他）.xlsx")
 
-'''
 #海外のセキュリティニュースの出力
 #csv形式
 def csvdownload_overseas(request):
