@@ -379,7 +379,7 @@ def xlsxdownload_overseas(request):
     ws = wb.active
     for i in range(len(header)):
         ws.cell(row = 1,column= i+1).value = header[i]
-    for i in range(len(overseas_list)-1):
+    for i in range(len(overseas_list)):
             for j in range(len(header)):
                 ws.cell(row = 2 + i,column = j+1).value = overseas_list[i][j]
     virtual = io.BytesIO()
