@@ -251,7 +251,7 @@ def main(request):
     response = req.get(url)
     soup = bs4(response.content,"html.parser")
     for element in soup.find_all("a",attrs={'class':'_self cvplbd'}):
-        overseas_list.append([element.text,element.get("href")])
+        overseas_list.append([sites,element.text,element.get("href")])
 
     
 
