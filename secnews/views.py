@@ -52,8 +52,8 @@ def overseas_list_appends(sites,topic,topurl):
                 check_url = element.get("href")
                 title = element.text
                 
-                if title.startswith('\n\n'):
-                    title= title.strip('\n\n')
+                #if title.startswith('\n\n'):
+                    #title= title.strip('\n\n')
                 
                 if title.endswith('new'):
                     title = title.rstrip('new')
@@ -235,7 +235,7 @@ def main(request):
     url = url[:-1]
     list_appends(sites,topic,url)
      
-    """
+    
     #海外ニュースサイト(morningstarsecurity)
     url = "https://morningstarsecurity.com/news"
     sites = "Morningstarsecurity"
@@ -244,7 +244,7 @@ def main(request):
     topic = soup.find(class_="cmra-content-links")
     url = url[:-1]
     overseas_list_appends(sites,topic,url)
-    """
+    
     
 
     #海外ニュースサイト(infosecurity-magazine)
