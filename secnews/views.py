@@ -52,11 +52,11 @@ def overseas_list_appends(sites,topic,topurl):
                 check_url = element.get("href")
                 title = element.text
                 
-                #if title.startswith('\n\n'):
+                if title.startswith('\n\n'):
                     #title= title.strip('\n\n')
                 
-                #if title.endswith('new'):
-                    #title = title.rstrip('new')
+                if title.endswith('new'):
+                    title = title.rstrip('new')
                 
                 if check_url.startswith('h'):
                     overseas_list.append([sites,title,element.get("href")])
