@@ -247,7 +247,7 @@ def main(request):
     
     #海外ニュースサイト（）
     url = "https://securityboulevard.com/cybersecurity-news/"
-    sites = "securityboulevard."
+    sites = "securityboulevard"
     response = req.get(url)
     soup = bs4(response.content,"html.parser")
     for element in soup.find_all("a",attrs={'class':'_self cvplbd'}):
